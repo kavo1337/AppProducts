@@ -13,14 +13,17 @@
             <Label VerticalAlignment="Center" 
                     HorizontalAlignment="Center">Почта</Label>
             <TextBox HorizontalAlignment="Center"
-                     Width="260"/>
+                     Width="260"
+                     x:Name="BoxEmail"/>
             <Label VerticalAlignment="Center" 
                     HorizontalAlignment="Center">Пароль</Label>
             <TextBox HorizontalAlignment="Center"
-                    Width="260"/>
+                    Width="260"
+                    x:Name="BoxPassword"/>
             <Button Content="Войти"
                     Width="100"
-                    Margin="0,10,0,0"/>
+                    Margin="0,10,0,0"
+                    Click="btnAuth"/>
         </StackPanel>
     </Grid>
 </Page>

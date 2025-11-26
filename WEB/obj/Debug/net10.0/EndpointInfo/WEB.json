@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/": {
+    "/Ping": {
       "get": {
         "tags": [
           "WEB"
@@ -17,7 +17,7 @@
         }
       }
     },
-    "/getAllProducts": {
+    "/GetAllProducts": {
       "get": {
         "tags": [
           "WEB"
@@ -29,7 +29,7 @@
         }
       }
     },
-    "/getAllAdmins": {
+    "/GetAllCategory": {
       "get": {
         "tags": [
           "WEB"
@@ -41,29 +41,33 @@
         }
       }
     },
-    "/auth": {
+    "/GetAllAdmins": {
       "get": {
         "tags": [
           "WEB"
         ],
-        "parameters": [
-          {
-            "name": "Email",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Auth": {
+      "post": {
+        "tags": [
+          "WEB"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthRequest"
+              }
             }
           },
-          {
-            "name": "Password",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -71,7 +75,7 @@
         }
       }
     },
-    "/categories/{nameCategory}": {
+    "/Categorie/{nameCategory}": {
       "get": {
         "tags": [
           "WEB"
@@ -92,9 +96,93 @@
           }
         }
       }
+    },
+    "/AddProduct": {
+      "post": {
+        "tags": [
+          "WEB"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/DeleteProduct/{id}": {
+      "delete": {
+        "tags": [
+          "WEB"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
-  "components": { },
+  "components": {
+    "schemas": {
+      "AuthRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
   "tags": [
     {
       "name": "WEB"
