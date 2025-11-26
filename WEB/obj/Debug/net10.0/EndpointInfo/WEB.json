@@ -17,7 +17,19 @@
         }
       }
     },
-    "/getAll": {
+    "/getAllProducts": {
+      "get": {
+        "tags": [
+          "WEB"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/getAllAdmins": {
       "get": {
         "tags": [
           "WEB"
@@ -59,19 +71,18 @@
         }
       }
     },
-    "/categories/{id}": {
+    "/categories/{nameCategory}": {
       "get": {
         "tags": [
           "WEB"
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
+            "name": "name",
+            "in": "query",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],

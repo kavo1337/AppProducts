@@ -33,7 +33,7 @@ if (app.Environment.IsDevelopment())
 
 app.MapGet("/", () => Results.Ok(new {ping = "pong"}));
 
-app.MapGet("/getAll", async (DataContextDB db) => 
+app.MapGet("/getAllProducts", async (DataContextDB db) => 
 {
     var all = await db.Products.ToListAsync();
 
@@ -42,6 +42,17 @@ app.MapGet("/getAll", async (DataContextDB db) =>
         return Results.Ok(all);
     }
     return Results.NotFound("Not products");
+});
+
+app.MapGet("/getAllAdmins", async (DataContextDB db) =>
+{
+    var all = await db.Admins.ToListAsync();
+
+    if (all.Count > 0)
+    {
+        return Results.Ok(all);
+    }
+    return Results.NotFound("Not admins");
 });
 
 
@@ -62,11 +73,11 @@ app.MapGet("/auth", async (DataContextDB db, string Email, string Password) =>
     return Results.Ok(new { accepted = "true"});
 });
 
-app.MapGet("/categories/{id}", async (int id, DataContextDB db) =>
+app.MapGet("/categories/{nameCategory}", async (string name, DataContextDB db) =>
 {
     var category = await db.Categories
         .Include(c => c.Products)
-        .FirstOrDefaultAsync(c => c.Id == id);
+        .FirstOrDefaultAsync(c => c.Name == name);
 
     if (category == null)
         return Results.NotFound(new { message = "Категория не найдена" });
