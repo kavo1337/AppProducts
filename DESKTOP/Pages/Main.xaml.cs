@@ -168,7 +168,12 @@ namespace DESKTOP.Pages
                 if (resp.IsSuccessStatusCode)
                 {
                     var products = await resp.Content.ReadFromJsonAsync<List<Product>>();
-                    ProductsGrid.ItemsSource = products;
+                    ProductsGrid.ItemsSource = products ?? new List<Product>();
+                }
+                else if (resp.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    // Если продуктов нет, очищаем DataGrid
+                    ProductsGrid.ItemsSource = new List<Product>();
                 }
             }
             catch (Exception ex)

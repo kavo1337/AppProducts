@@ -69,7 +69,7 @@ namespace DESKTOP.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/DESKTOP;V1.0.0.0;component/pages/auth.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/DESKTOP;component/pages/auth.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\Auth.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

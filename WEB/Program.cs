@@ -46,12 +46,7 @@ app.MapGet("/Ping", () => Results.Ok(new {ping = "pong"}));
 app.MapGet("/GetAllProducts", async (DataContextDB db) => 
 {
     var all = await db.Products.ToListAsync();
-
-    if (all.Count > 0) 
-    {
-        return Results.Ok(all);
-    }
-    return Results.NotFound("Not products");
+    return Results.Ok(all);
 });
 
 app.MapGet("/GetAllCategory", async (DataContextDB db) =>
