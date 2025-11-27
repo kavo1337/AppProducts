@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WEB.Data;
 using WEB.Models;
+using static WEB.DTO.ALLDTO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,7 +47,12 @@ app.MapGet("/Ping", () => Results.Ok(new {ping = "pong"}));
 app.MapGet("/GetAllProducts", async (DataContextDB db) => 
 {
     var all = await db.Products.ToListAsync();
-    return Results.Ok(all);
+
+    if (all.Count > 0) 
+    {
+        return Results.Ok(all);
+    }
+    return Results.NotFound("Not products");
 });
 
 app.MapGet("/GetAllCategory", async (DataContextDB db) =>
@@ -72,7 +78,7 @@ app.MapGet("/GetAllAdmins", async (DataContextDB db) =>
 });
 
 
-app.MapPost("/Auth", async (DataContextDB db, AuthRequest request) =>
+app.MapPost("/Auth", async (DataContextDB db, AuthRequestDTO request) =>
 {
     if (string.IsNullOrEmpty(request.Email)) throw new ArgumentException("Email is empty");
     if (string.IsNullOrEmpty(request.Password)) throw new ArgumentException("Password is empty");
@@ -151,6 +157,20 @@ app.MapDelete("/DeleteProduct/{id}", async (DataContextDB db, int id) =>
     return Results.Ok("Продукт удален");
 });
 
+app.MapPost("/EditProduct/{id}", (DataContextDB db, int id, EditProductDTO dto) =>
+{
+    var product = db.Products.FirstOrDefault(a => a.Id == id);
+    if (product == null) 
+        return Results.NotFound(new { error = "Продукт не найден" });
+
+    product.Name = dto.Name;
+    product.Description = dto.Description;
+    product.CategoryName = dto.CategoryName;
+
+    db.SaveChanges();
+
+    return Results.Ok("Продукт изменен");
+});
+
 
 app.Run();
-public record AuthRequest(string Email, string Password);

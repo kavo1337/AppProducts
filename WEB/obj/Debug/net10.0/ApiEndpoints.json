@@ -31,7 +31,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "AuthRequest",
+        "Type": "WEB.DTO.ALLDTO\u002BAuthRequestDTO",
         "IsRequired": true
       }
     ],
@@ -76,6 +76,33 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Program\u002B\u003C\u003Ec",
+    "Method": "\u003C\u003CMain\u003E$\u003Eb__0_10",
+    "RelativePath": "EditProduct/{id}",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "WEB.DTO.ALLDTO\u002BEditProductDTO",
         "IsRequired": true
       }
     ],

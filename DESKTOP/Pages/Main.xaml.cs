@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static DESKTOP.DTO.ALLDTO;
 
 namespace DESKTOP.Pages
 {
@@ -25,17 +26,6 @@ namespace DESKTOP.Pages
         {
             BaseAddress = new Uri("https://localhost:7180")
         };
-
-
-        public class Product
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Description { get; set; }
-            public string CategoryName { get; set; }
-
-        }
-
         public Main()
         {
             InitializeComponent();
@@ -67,7 +57,7 @@ namespace DESKTOP.Pages
                 return;
             }
 
-            var category = (categoryBox.Text ?? "").Trim();
+            var category = (CategoryBox.Text ?? "").Trim();
             if (string.IsNullOrWhiteSpace(category))
             {
                 Output.AppendText("Введите категорию.\r\n");
@@ -108,7 +98,7 @@ namespace DESKTOP.Pages
 
                 NameBox.Clear();
                 DescriptionBox.Clear();
-                categoryBox.Clear();
+                CategoryBox.Clear();
 
                 await ReloadProducts();
             }
@@ -172,7 +162,6 @@ namespace DESKTOP.Pages
                 }
                 else if (resp.StatusCode == System.Net.HttpStatusCode.NotFound)
                 {
-                    // Если продуктов нет, очищаем DataGrid
                     ProductsGrid.ItemsSource = new List<Product>();
                 }
             }
@@ -185,6 +174,73 @@ namespace DESKTOP.Pages
         private async void LoadButton_Click(object sender, RoutedEventArgs e)
         {
             await ReloadProducts();
+        }
+
+        private async void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ProductsGrid.SelectedItem is not Product u)
+                {
+                    Output.AppendText("Не выбран элемент для изменения\r\n");
+                    return;
+                }
+
+                var confirm = MessageBox.Show(
+                    $"Изменить продукт #{u.Id}: {u.Name}?",
+                    "Подтверждение",
+                    MessageBoxButton.OKCancel,
+                    MessageBoxImage.Question);
+
+                if (confirm != MessageBoxResult.OK)
+                    return;
+
+                string name = NameBox.Text;
+                if (string.IsNullOrEmpty(name)) 
+                {
+                    MessageBox.Show("Не введенно имя продукта!");
+                    return;
+                }
+                    
+
+                string description = DescriptionBox.Text;
+                if (string.IsNullOrEmpty(description))
+                {
+                    MessageBox.Show("Не введенно описание продукта!");
+                    return;
+                }
+                 
+                string category = CategoryBox.Text;
+                if (string.IsNullOrEmpty(category))
+                {
+                    MessageBox.Show("Не введенна категория продукта!");
+                    return;
+                }
+                   
+                var payload = new EditProductRequest() 
+                { 
+                    Id = u.Id,
+                    Name = name,
+                    Description = description,
+                    CategoryName = category
+                };
+
+                var resp = await _http.PostAsJsonAsync($"/EditProduct/{u.Id}", payload);
+
+                if (!resp.IsSuccessStatusCode)
+                {
+                    var err = await resp.Content.ReadAsStringAsync();
+                    Output.AppendText($"UPDATE /EditProduct/{u.Id} → {(int)resp.StatusCode} {resp.ReasonPhrase}: {err}\r\n");
+                    return;
+                }
+
+                Output.AppendText($"Изменено: #{u.Id} {u.Name}\r\n");
+                await ReloadProducts();
+            }
+            catch (Exception ex)
+            {
+                Output.AppendText($"Ошибка EDIT: {ex.Message}\r\n");
+            }
         }
     }
 }
