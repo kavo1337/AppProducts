@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nY5yKyAf7d0=",
+  "dgSpecHash": "2inNSQeM+xg=",
   "success": true,
-  "projectFilePath": "C:\\documents\\c#\\AppJWT\\WEB\\WEB.csproj",
+  "projectFilePath": "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\WEB\\WEB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\clost\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\clost\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

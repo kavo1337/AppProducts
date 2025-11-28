@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\documents\\c#\\AppJWT\\WEB\\WEB.csproj": {}
+    "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\WEB\\WEB.csproj": {}
   },
   "projects": {
-    "C:\\documents\\c#\\AppJWT\\WEB\\WEB.csproj": {
+    "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\WEB\\WEB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\documents\\c#\\AppJWT\\WEB\\WEB.csproj",
+        "projectUniqueName": "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\WEB\\WEB.csproj",
         "projectName": "WEB",
-        "projectPath": "C:\\documents\\c#\\AppJWT\\WEB\\WEB.csproj",
+        "projectPath": "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\WEB\\WEB.csproj",
         "packagesPath": "C:\\Users\\clost\\.nuget\\packages\\",
-        "outputPath": "C:\\documents\\c#\\AppJWT\\WEB\\obj\\",
+        "outputPath": "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\WEB\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

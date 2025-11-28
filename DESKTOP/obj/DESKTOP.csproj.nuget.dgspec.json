@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\documents\\c#\\AppJWT\\DESKTOP\\DESKTOP.csproj": {}
+    "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\DESKTOP\\DESKTOP.csproj": {}
   },
   "projects": {
-    "C:\\documents\\c#\\AppJWT\\DESKTOP\\DESKTOP.csproj": {
+    "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\DESKTOP\\DESKTOP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\documents\\c#\\AppJWT\\DESKTOP\\DESKTOP.csproj",
+        "projectUniqueName": "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\DESKTOP\\DESKTOP.csproj",
         "projectName": "DESKTOP",
-        "projectPath": "C:\\documents\\c#\\AppJWT\\DESKTOP\\DESKTOP.csproj",
+        "projectPath": "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\DESKTOP\\DESKTOP.csproj",
         "packagesPath": "C:\\Users\\clost\\.nuget\\packages\\",
-        "outputPath": "C:\\documents\\c#\\AppJWT\\DESKTOP\\obj\\",
+        "outputPath": "C:\\Users\\clost\\OneDrive\\Документы\\C#\\AppProducts\\DESKTOP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

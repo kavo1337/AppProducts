@@ -15,15 +15,6 @@ builder.Services.AddDbContext<DataContextDB>( opt =>
 
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddCors(options =>
-{
-    options.AddDefaultPolicy(policy =>
-    {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
-    });
-});
 
 var app = builder.Build();
 
@@ -32,9 +23,6 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<DataContextDB>();
     await db.Database.EnsureCreatedAsync();
 }
-
-
-app.UseCors();
 
 if (app.Environment.IsDevelopment())
 {
